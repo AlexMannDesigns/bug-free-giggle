@@ -59,39 +59,25 @@ app.post("/", function(req, res){
 
   const newToDo = new Item({name: itemName});
 
-  if (listName === "Today") {
-    newToDo.save();
-    res.redirect("/");
-  } else {
-    List.findOne({name: listName}, function(err, foundList){
-      foundList.items.push(newToDo);
-      foundList.save();
-      res.redirect("/" + listName);
-    })
-  }
+  newToDo.save();
+  res.redirect("/");
 
 });
 
 app.post("/delete", function(req, res) {
-  const deletedItem = req.body.checkbox;
-  const listName = req.body.listName;
+  const deletedItem = req.body.listName;
 
-  if (listName === "Today") {
+  console.log(deletedItem)
+
+
     Item.findByIdAndRemove(deletedItem, (err) => {
       if (err) {
         console.log(err);
       } else {
-        console.log("successfully deleted checked item");
+        console.log("successfully deleted item");
         res.redirect("/");
       }
     });
-  } else {
-    List.findOneAndUpdate({name: listName}, {$pull: {items: {_id: deletedItem}}}, function(err, foundList) {
-      if (!err) {
-        res.redirect("/" + listName);
-      }
-    });
-  }
 
 });
 

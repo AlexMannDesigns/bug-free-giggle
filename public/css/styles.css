@@ -29,6 +29,7 @@ h1 {
   min-height: 70px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid #F1F1F1;
 }
 
@@ -68,6 +69,24 @@ button {
   font-size: 30px;
   border-width: 0;
   cursor: pointer;
+  margin-right: 15px;
+}
+
+.delete-btn {
+  min-height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border-color: transparent;
+  background-color: #FFF;
+  color: red;
+  font-size: 30px;
+  border-width: 0;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+button:focus{
+  outline: 0;
 }
 
 input[type="text"] {
